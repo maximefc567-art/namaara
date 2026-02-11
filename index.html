@@ -3,27 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NAMARA | Visual Storytelling</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>NAMARA | Photography & Videography</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-deep: #0a0a0a; /* Deep Matte Black */
-            --bg-accent: #161616; /* Charcoal */
-            --gold: #c5a059; /* Muted Gold Accent */
-            --gold-light: #e0c58e;
-            --text-main: #e5e5e5;
-            --text-dim: #a0a0a0;
-            --serif: 'Bodoni Moda', serif;
-            --sans: 'Inter', sans-serif;
+            --black: #000000;
+            --dark-grey: #0f0f0f;
+            --accent-copper: #b87333; /* Classy Copper color */
+            --accent-glow: rgba(184, 115, 51, 0.2);
+            --text-light: #e0e0e0;
+            --text-dim: #888888;
+            --serif: 'Playfair Display', serif;
+            --sans: 'Montserrat', sans-serif;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body {
-            background-color: var(--bg-deep);
-            color: var(--text-main);
+            background-color: var(--black);
+            color: var(--text-light);
             font-family: var(--sans);
             line-height: 1.6;
-            overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
         /* --- Navigation --- */
@@ -31,160 +32,177 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 40px 8%;
-            position: absolute;
+            padding: 30px 8%;
+            position: fixed;
             width: 100%;
-            z-index: 100;
+            top: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
+
         .logo {
             font-family: var(--serif);
-            font-size: 1.8rem;
-            letter-spacing: 4px;
-            color: var(--gold);
+            font-size: 1.6rem;
+            letter-spacing: 3px;
+            color: #fff;
             text-decoration: none;
-            font-weight: 700;
+            font-weight: bold;
         }
+
+        .logo span { color: var(--accent-copper); }
+
         .nav-links { display: flex; gap: 40px; list-style: none; }
         .nav-links a {
             text-decoration: none;
-            color: var(--text-main);
-            font-size: 0.8rem;
+            color: var(--text-light);
+            font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 2px;
             transition: color 0.3s;
         }
-        .nav-links a:hover { color: var(--gold); }
+        .nav-links a:hover { color: var(--accent-copper); }
 
         /* --- Hero Section --- */
         .hero {
             height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                        url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=2000'); /* Placeholder for Car image */
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('lamborghini-interior.jpg'); /* Replace with your car photo */
             background-size: cover;
             background-position: center;
-            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+            display: flex;
+            align-items: center;
+            padding: 0 8%;
         }
+
+        .hero-content { max-width: 700px; }
         .hero-content h1 {
             font-family: var(--serif);
-            font-size: clamp(3.5rem, 10vw, 7rem);
-            font-weight: 400;
-            margin-bottom: 10px;
-            font-style: italic;
-        }
-        .hero-content p {
-            font-size: 1.2rem;
-            letter-spacing: 6px;
-            text-transform: uppercase;
-            color: var(--gold);
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            margin-bottom: 20px;
+            line-height: 1.1;
         }
 
-        /* --- Portfolio Section --- */
-        .section { padding: 120px 8%; }
-        .section-header {
-            margin-bottom: 60px;
-            text-align: center;
+        .hero-content p {
+            color: var(--accent-copper);
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            font-weight: 600;
+            margin-bottom: 10px;
         }
-        .section-header h2 {
+
+        /* --- Portfolio Grid --- */
+        .section { padding: 100px 8%; }
+        .section-title {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+        .section-title h2 {
             font-family: var(--serif);
             font-size: 3rem;
-            color: var(--gold);
+            margin-bottom: 10px;
         }
-        .section-header p { color: var(--text-dim); text-transform: uppercase; letter-spacing: 2px; }
+        .section-title div {
+            width: 50px;
+            height: 2px;
+            background: var(--accent-copper);
+            margin: 0 auto;
+        }
 
-        .portfolio-grid {
+        .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
         }
-        .work-card {
+
+        .work-item {
             position: relative;
-            aspect-ratio: 3/4;
             overflow: hidden;
-            background: var(--bg-accent);
-            border: 1px solid rgba(197, 160, 89, 0.1);
+            background: var(--dark-grey);
+            aspect-ratio: 4/5;
         }
-        .work-card img {
+
+        .work-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: grayscale(20%);
-            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s;
+            transition: transform 0.6s ease;
         }
-        .work-card:hover img {
-            transform: scale(1.08);
-            filter: grayscale(0%);
-        }
-        .card-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(transparent, rgba(0,0,0,0.8));
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 30px;
-            opacity: 0;
-            transition: opacity 0.4s;
-        }
-        .work-card:hover .card-overlay { opacity: 1; }
-        .card-overlay h3 { font-family: var(--serif); font-size: 1.5rem; color: var(--gold-light); }
 
-        /* --- About Section --- */
-        .about {
+        .work-item:hover img { transform: scale(1.05); }
+
+        .item-desc {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 40px 30px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+        }
+
+        .item-desc h3 { font-family: var(--serif); color: var(--accent-copper); font-size: 1.4rem; }
+        .item-desc p { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: #ccc; }
+
+        /* --- Meet the Artist Section --- */
+        .artist-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 80px;
             align-items: center;
-            background: var(--bg-accent);
+            background: var(--dark-grey);
+            padding: 80px;
+            border-radius: 4px;
         }
-        .about-image {
-            position: relative;
-            padding: 20px;
+
+        .artist-img {
+            border: 1px solid var(--accent-copper);
+            padding: 15px;
+            box-shadow: 0 0 30px var(--accent-glow);
         }
-        .about-image img {
-            width: 100%;
-            border: 1px solid var(--gold);
+
+        .artist-img img { width: 100%; display: block; }
+
+        .artist-text h2 { font-family: var(--serif); font-size: 2.8rem; margin-bottom: 25px; }
+        .artist-text p { color: var(--text-dim); margin-bottom: 20px; font-size: 1.05rem; }
+
+        .specialties {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 30px;
         }
-        .about-content h2 { font-family: var(--serif); font-size: 3rem; margin-bottom: 20px; }
-        .about-content p { margin-bottom: 30px; color: var(--text-dim); }
-        .service-tags { display: flex; flex-wrap: wrap; gap: 15px; list-style: none; }
-        .service-tags li {
-            border: 1px solid var(--gold);
-            padding: 8px 20px;
-            font-size: 0.8rem;
+
+        .spec-item {
+            padding: 10px;
+            border-left: 2px solid var(--accent-copper);
+            font-size: 0.85rem;
             text-transform: uppercase;
-            color: var(--gold);
+            letter-spacing: 1px;
         }
 
         /* --- Footer --- */
         footer {
-            padding: 100px 8%;
             text-align: center;
-            border-top: 1px solid rgba(197, 160, 89, 0.1);
-        }
-        .cta-btn {
-            display: inline-block;
-            padding: 20px 50px;
-            background: transparent;
-            border: 1px solid var(--gold);
-            color: var(--gold);
-            text-decoration: none;
-            font-family: var(--serif);
-            font-size: 1.2rem;
-            transition: 0.4s;
-        }
-        .cta-btn:hover {
-            background: var(--gold);
-            color: var(--bg-deep);
+            padding: 80px 8% 40px;
+            border-top: 1px solid rgba(255,255,255,0.05);
         }
 
-        /* Responsive */
+        .contact-link {
+            font-family: var(--serif);
+            font-size: 2rem;
+            color: #fff;
+            text-decoration: none;
+            border-bottom: 2px solid var(--accent-copper);
+            padding-bottom: 10px;
+            transition: 0.3s;
+        }
+
+        .contact-link:hover { color: var(--accent-copper); }
+
+        /* Mobile Adjustments */
         @media (max-width: 900px) {
-            .about { grid-template-columns: 1fr; text-align: center; }
-            .portfolio-grid { grid-template-columns: 1fr; }
+            .artist-container { grid-template-columns: 1fr; padding: 40px 20px; }
             .nav-links { display: none; }
         }
     </style>
@@ -192,10 +210,10 @@
 <body>
 
     <nav>
-        <a href="#" class="logo">NAMARA.</a>
+        <a href="#" class="logo">NAMARA<span>.</span></a>
         <ul class="nav-links">
-            <li><a href="#work">Portfolio</a></li>
-            <li><a href="#about">The Artist</a></li>
+            <li><a href="#work">Work</a></li>
+            <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
@@ -203,72 +221,72 @@
     <header class="hero">
         <div class="hero-content">
             <p>Photographe & Vidéaste</p>
-            <h1>Art in Motion.</h1>
+            <h1>Visual Excellence for the Bold.</h1>
         </div>
     </header>
 
     <section class="section" id="work">
         <div class="section-header">
-            <p>Selected Projects</p>
-            <h2>The Gallery</h2>
+            <div class="section-title">
+                <h2>Featured Portfolio</h2>
+                <div></div>
+            </div>
         </div>
-        <div class="portfolio-grid">
-            <div class="work-card">
-                <img src="https://images.unsplash.com/photo-1544636331-e268592033c2?q=80&w=800" alt="Automotive">
-                <div class="card-overlay">
+        <div class="grid">
+            <div class="work-item">
+                <img src="jaguar-woods.jpg" alt="Automotive">
+                <div class="item-desc">
                     <p>Automotive</p>
-                    <h3>Power & Precision</h3>
+                    <h3>Jaguar Precision</h3>
                 </div>
             </div>
-            <div class="work-card">
-                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=800" alt="Le Neptune">
-                <div class="card-overlay">
-                    <p>Business</p>
-                    <h3>Le Neptune Brasserie</h3>
+            <div class="work-item">
+                <img src="le-neptune.jpg" alt="Events">
+                <div class="item-desc">
+                    <p>Brasserie & Restaurant</p>
+                    <h3>Le Neptune</h3>
                 </div>
             </div>
-            <div class="work-card">
-                <img src="https://images.unsplash.com/photo-1433086966358-54859d0ed716?q=80&w=800" alt="Waterfall">
-                <div class="card-overlay">
-                    <p>Travel</p>
-                    <h3>Hidden Wonders</h3>
-                </div>
-            </div>
-            <div class="work-card">
-                <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=800" alt="Jean Paul Gaultier">
-                <div class="card-overlay">
-                    <p>Commercial</p>
+            <div class="work-item">
+                <img src="perfume.jpg" alt="Commercial">
+                <div class="item-desc">
+                    <p>Product</p>
                     <h3>Jean Paul Gaultier</h3>
+                </div>
+            </div>
+            <div class="work-item">
+                <img src="waterfall.jpg" alt="Travel">
+                <div class="item-desc">
+                    <p>Travel</p>
+                    <h3>Escape to Nature</h3>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="section about" id="about">
-        <div class="about-image">
-            <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=800" alt="Namara at work">
-        </div>
-        <div class="about-content">
-            <p style="color: var(--gold); letter-spacing: 2px;">THE VISION</p>
-            <h2>Based in Belgium.<br>Working Globally.</h2>
-            <p>Specializing in capturing the high-energy atmosphere of events, the sleek lines of automotive design, and the professional essence of modern businesses.</p>
-            <ul class="service-tags">
-                <li>Automotive</li>
-                <li>Events</li>
-                <li>Business Branding</li>
-                <li>Travel</li>
-                <li>Videography</li>
-            </ul>
+    <section class="section">
+        <div class="artist-container" id="about">
+            <div class="artist-img">
+                <img src="namara-shooting.jpg" alt="Namara Photographe">
+            </div>
+            <div class="artist-text">
+                <p style="color: var(--accent-copper); font-weight: 600;">THE ARTIST</p>
+                <h2>Based in Belgium.<br>Working Worldwide.</h2>
+                <p>Capturing the essence of movement, architecture, and luxury. I specialize in high-end visuals for businesses that value storytelling over simple documentation.</p>
+                <div class="specialties">
+                    <div class="spec-item">Business Branding</div>
+                    <div class="spec-item">High-End Events</div>
+                    <div class="spec-item">Automotive Art</div>
+                    <div class="spec-item">Travel & Lifestyle</div>
+                </div>
+            </div>
         </div>
     </section>
 
     <footer id="contact">
-        <div class="section-header">
-            <h2>Ready to create?</h2>
-            <p>Currently booking for 2026 projects</p>
-        </div>
-        <a href="mailto:contact@namara.be" class="cta-btn">Enquire Now</a>
-        <div style="margin-top: 60px; font-size: 0.7rem; letter-spacing: 2px; color: var(--text-dim);">
+        <p style="margin-bottom: 20px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 2px;">Let's discuss your project</p>
+        <a href="mailto:contact@namara.be" class="contact-link">hello@namara.be</a>
+        <div style="margin-top: 60px; color: var(--text-dim); font-size: 0.7rem;">
             © 2026 NAMARA PHOTOGRAPHY & VIDEOGRAPHY
         </div>
     </footer>
